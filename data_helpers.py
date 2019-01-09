@@ -5,8 +5,8 @@ from collections import Counter
 
 def clean_str(string):
     """
-    Tokenization/string cleaning for all datasets except for SST.
-    Modified version
+    Tokenization/string cleaning for all datasets 
+    Modified version more cleaning methods added
 	Original taken from https://github.com/yoonkim/CNN_sentence/blob/master/process_data.py
     """
     string = re.sub(r"[^A-Za-z0-9(),!.?\'\`]", " ", string)
@@ -32,7 +32,7 @@ def load_data_and_labels(positive_data_file, negative_data_file):
     Returns split sentences and labels.
     """
     # Load data from files
-    # Needs to be opened in binary mode to avoid new lines from emojis counter as actual newlines (to be changed)
+    # Needs to be opened in binary mode to avoid new lines from emojis counter as actual newlines (to do )
     positive_examples = list(open(positive_data_file, "r").readlines())
     positive_examples = [s.strip() for s in positive_examples]
     negative_examples = list(open(negative_data_file, "r").readlines())
