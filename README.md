@@ -12,6 +12,7 @@ The methods used in this implementation are the following:
     -   Baseline RNN
     -   GRU
     -   LSTM
+-   SVM
 
 Prerequisites
 -------------
@@ -23,9 +24,9 @@ Install dependencies
 
     pip3 install requirements.txt
 
-Training
---------
+## 1. Neural Networks
 
+### 1.1 Training
 There are two modes of training for each algorithm:
 
 1.  Training with random word vectors  
@@ -53,8 +54,7 @@ using `python train_rnn.py` without a flag will train the baseline RNN.
 After the training finishes the top five models with the best accuracy
 are saved in a folder with the format `runs/DAY_MMM_DD_HH_MM_SS_YYYY`
 
-Evaluation
-----------
+### 1.2 Evaluation
 
 For the evaluation we have to use the following flag to point to the
 directory that we saved the checkpoints
@@ -73,3 +73,25 @@ performance of the classifier.
 To use tensorboard
 
     tensorboard --logdir runs/DAY_MMM_DD_HH_MM_SS_YYYY/summaries
+## 2. SVM
+
+### 2.1 Training
+
+There is more than one choice for a classifier. 
+In order to train the classifier that is selected
+
+```
+python classifier_svm.py
+```
+
+The output will be a confusion matrix of the classifier based on the training data.
+
+### 2.2 Evaluation
+
+In order to evaluate the selected algorithm
+
+```
+python apply_classifier.py
+```
+
+The result will be a confusion matrix of the classifier based on the test data along with the accuracy.
