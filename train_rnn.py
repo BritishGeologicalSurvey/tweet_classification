@@ -15,7 +15,7 @@ from checkmate import BestCheckpointSaver
 
 # Data loading params
 tf.flags.DEFINE_string("pos_dir", ".", "Path of positive data")
-tf.flags.DEFINE_string("neg_dir", ".", "Path of negative data")
+tf.flags.DEFINE_string("neg_dir",".", "Path of negative data")
 tf.flags.DEFINE_float("dev_sample_percentage", .2, "Percentage of the training data to use for validation")
 #tf.flags.DEFINE_integer("max_document_length", 100, "Max sentence length in train/test data (Default: 100)")
 
@@ -42,10 +42,6 @@ tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on 
 
 FLAGS = tf.flags.FLAGS
 FLAGS(sys.argv)
-#print("\nParameters:")
-#for attr, value in sorted(FLAGS.__flags.items()):
- #   print("{} = {}".format(attr.upper(), value))
-#print("")
 
 
 def train():
@@ -56,13 +52,9 @@ def train():
     x = np.array(list(text_vocab_processor.fit_transform(tweets))) #encode tweets
     print("Text Vocabulary Size: {:d}".format(len(text_vocab_processor.vocabulary_)))
 
-    print("tweets = {0}".format(x.shape))
-    print("labels = {0}".format(y.shape))
-    print("")
     # k-fold cross-validation
     kf = KFold(n_splits=10, shuffle=True, random_state=10)
     for train_index, test_index in kf.split(x, y):
-        print("Train:", train_index, "Validation:",test_index)
         x_train, x_dev = x[train_index], x[test_index]
         y_train, y_dev = y[train_index], y[test_index]
     del x, y

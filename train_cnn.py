@@ -42,10 +42,6 @@ tf.flags.DEFINE_boolean("log_device_placement", False, "Log placement of ops on 
 
 FLAGS = tf.flags.FLAGS
 FLAGS(sys.argv)
-print("\nParameters:")
-for attr, value in sorted(FLAGS.__flags.items()):
-    print("{} = {}".format(attr.upper(), value))
-print("")
 
 
 def train():
@@ -54,11 +50,7 @@ def train():
         max_document_length = max([len(x.split(" ")) for x in x_text])
         text_vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)
     x = np.array(list(text_vocab_processor.fit_transform(x_text)))
-    print("Text Vocabulary Size: {:d}".format(len(text_vocab_processor.vocabulary_)))
 
-    print("x = {0}".format(x.shape))
-    print("y = {0}".format(y.shape))
-    print("")
 
     # Change this (older version)
     shuffle_indices = range(len(x))
@@ -68,7 +60,6 @@ def train():
     # k-fold cross validation
     kf = KFold(n_splits=10, shuffle=True, random_state=10)
     for train_index, test_index in kf.split(x_shuffled, y_shuffled):
-        print("Train:", train_index,"Val:",test_index)
         x_train, x_dev = x_shuffled[train_index], x_shuffled[test_index]
         y_train, y_dev = y_shuffled[train_index], y_shuffled[test_index]
     del x, y, x_shuffled, y_shuffled
