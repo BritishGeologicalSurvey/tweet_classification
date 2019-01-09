@@ -3,7 +3,7 @@
 This repository contains several techniques that can be used to perform
 binary classification with text. In this case we train each classifier
 to learn whether a tweet is referring to a hazard-event/phenomenon
-(earthquakes, volcanos, floods, the aurora) or not.
+(earthquakes, volcanoes, floods, the aurora) or not.
 
 The methods used in this implementation are the following:
 
