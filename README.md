@@ -1,5 +1,7 @@
 ## Automatic tweet classification for geohazards
 
+[![DOI](https://zenodo.org/badge/161202320.svg)](https://zenodo.org/badge/latestdoi/161202320)
+
 This repository contains several techniques that can be used to perform
 binary classification with text. In this case we train each classifier
 to learn whether a tweet is referring to a hazard-event/phenomenon
